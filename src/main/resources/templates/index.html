@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <!-- Localised text -->
+    <title th:text="#{dashboard.title}"></title>
+</head>
+<body>
+<!-- Variables -->
+<p th:text="${username}"></p>
+<p th:text="${customer.getName()}"></p>
+<p th:text="${customer.name}"></p>
+
+<!-- Maps -->
+<h1>Towns of the World</h1>
+<p th:text="${townsOfCountries.France}"></p>
+<p th:text="${townsOfCountries.Germany}"></p>
+<p th:text="${townsOfCountries['UK']}"></p>
+
+<!-- Arrays and lists -->
+<p th:text="${booksList[0].name}"></p>
+
+<!-- Selected objects -->
+<div th:object="${genre}">
+    <p>Name: <span th:text="*{name}"></span></p>
+    <p>Period: <span th:text="*{period}"></span></p>
+</div>
+
+<!-- Link -->
+<a th:href="@{'https://www.google.com/search?q=thymeleaf'}">Search</a>
+
+<!-- Literal Substitutions -->
+<p th:text="'Hello, ' + ${username}"></p>
+<p th:text="|Welcome, ${username}!|"></p>
+
+<!-- Expression Inlining -->
+<span>[[${username}]]</span>
+
+<!-- Text content of the element -->
+<div th:text="${username}">Bob</div>
+
+<!-- Conditional inclusion -->
+<div th:if="${!genre.getPeriod().equals('Romance')}">
+    The color of the car isn't blue
+</div>
+
+<!-- Conditional exclusion -->
+<div th:unless="${genre.getPeriod().isEmpty()}">
+    The car object has a color.
+</div>
+
+<!-- Iteration -->
+<ul>
+    <li th:each="language : ${languages}" th:text="${language}"></li>
+</ul>
+
+<!-- Preprocessing -->
+<p th:text="'Preprocessing: ' + ${townsOfCountries}"></p>
+</body>
+</html>
